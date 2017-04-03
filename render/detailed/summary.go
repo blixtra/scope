@@ -86,6 +86,11 @@ func MakeNodeSummary(r report.Report, n report.Node) (NodeSummary, bool) {
 	if renderer, ok := renderers[n.Topology]; ok {
 		return renderer(baseNodeSummary(r, n), n)
 	}
+	if _, ok := r.Topology(n.Topology); ok {
+		summary := baseNodeSummary(r, n)
+		summary.Label = n.ID // This is unlikely to look very good, but is a reasonable fallback
+		return summary, true
+	}
 	if strings.HasPrefix(n.Topology, "group:") {
 		return groupNodeSummary(baseNodeSummary(r, n), r, n)
 	}
