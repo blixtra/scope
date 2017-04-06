@@ -463,6 +463,7 @@
     }
 
     .border {
+      transition: opacity .5s $base-ease;
       fill: none;
       stroke-opacity: 1;
       stroke-width: $node-border-stroke-width;
@@ -480,6 +481,7 @@
     }
 
     .node {
+      transition: opacity .5s $base-ease;
       fill: $text-color;
       stroke: $background-lighter-color;
       stroke-width: 0.05;
@@ -1870,5 +1872,11 @@
 
   .fa-close {
     width: 25px;
+  }
+}
+
+.blurrr > .node {
+  .highlight, .border, .node, .metric-fill, .node-labels-container {
+    opacity: 0.4;
   }
 }
